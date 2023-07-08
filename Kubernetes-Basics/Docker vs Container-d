@@ -1,0 +1,18 @@
+Docker:
+
+Docker is an open-source platform that provides a complete set of tools and a runtime environment for building, packaging, and distributing applications in containers.
+It includes various components like Docker Engine, Docker CLI, and Docker images.
+Docker Engine: It is the runtime component that runs and manages containers on the host system. It handles the creation, execution, and monitoring of containers.
+Docker CLI: It is the command-line interface that allows users to interact with Docker. It provides commands for building, running, and managing containers.
+Docker images: Images are the building blocks of containers. They are read-only templates containing everything needed to run an application, including the code, dependencies, libraries, and configuration.
+Docker allows developers to easily package their applications and dependencies into portable containers, ensuring consistency and reproducibility across different environments.
+It provides a user-friendly interface and a wide range of features for managing containers, networking, storage, and orchestration of applications.
+Containerd:
+
+Containerd is an open-source container runtime that focuses on the execution and management of containers.
+It is designed to be lightweight and modular, providing a minimalistic runtime environment for containers.
+Containerd acts as a lower-level component, responsible for fundamental container operations, such as container lifecycle management, image handling, and low-level container runtime tasks.
+It provides a client-server architecture, where the containerd daemon runs as a background service and exposes an API for container management.
+Containerd is often used as a runtime engine within higher-level container platforms and orchestration systems, such as Docker and Kubernetes.
+Unlike Docker, Containerd does not provide a user-friendly interface or high-level features like container building or orchestration. It focuses on the core container runtime functionality.
+In summary, Docker is a comprehensive platform that includes tools, runtime, and a user-friendly interface for building, packaging, and managing containers. It provides a complete solution for containerization and offers features like container building, networking, storage management, and orchestration. On the other hand, Containerd is a lightweight container runtime that focuses on the core container execution and management tasks. It acts as a lower-level component, providing essential container runtime functionality to be used within higher-level container platforms or orchestration systems.
