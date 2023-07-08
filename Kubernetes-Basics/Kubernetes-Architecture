@@ -1,0 +1,28 @@
+Explaining k8s Architecture to 8 year old kid:
+
+
+Imagine you have a toy city, and you need a way to manage all the different tasks and activities happening in that city. Kubernetes acts as the mayor of this city, overseeing everything and ensuring everything runs smoothly.
+
+Master Node (Mayor's Office): The master node is like the mayor's office, where all the important decisions are made. It consists of three main components:
+
+API Server (Mayor): The API server is like the mayor, receiving requests and instructions from users and other components. It acts as the central communication hub for Kubernetes.
+
+Scheduler (Task Manager): The scheduler is like a task manager. It assigns work to different worker nodes based on their availability and resources. It decides where each container should run to achieve balance and efficiency.
+
+Controller Manager (City Administrator): The controller manager is like a city administrator. It monitors the overall health and state of the city. It makes sure the desired state (as defined in the configurations) matches the current state of the containers. If anything goes wrong, it takes appropriate actions to correct it.
+
+Worker Nodes (City Blocks): The worker nodes are like individual city blocks. They are responsible for running the actual containers and performing the work. Each worker node consists of:
+
+Kubelet (Block Supervisor): The kubelet is like a supervisor for a specific block. It takes instructions from the mayor's office (master node) and ensures that the containers on its block are running as expected. It reports back to the mayor's office about the health and status of the containers.
+
+Container Runtime (Building Contractors): The container runtime is like a building contractor. It's responsible for creating and managing containers. It follows the instructions from the kubelet and starts, stops, and monitors containers on the worker node.
+
+Kube Proxy (Traffic Police): The kube proxy acts as traffic police within each block. It routes and manages network traffic to the right containers within the block, ensuring proper communication.
+
+Pods (Houses): Pods are like individual houses in the city. Each pod can contain one or more containers that work together as a unit. They share resources, such as network and storage, and can communicate with each other easily.
+
+Services (Streets): Services are like streets connecting different houses (pods). They provide a consistent and stable network endpoint for accessing the containers within the pods. Services ensure that containers can communicate with each other across different blocks (worker nodes) seamlessly.
+
+This simplified analogy helps explain the basic components of a Kubernetes architecture. The master node (mayor's office) manages and controls the overall operation, while the worker nodes (city blocks) run the containers and perform the actual work. Pods (houses) host the containers, and services (streets) enable communication between them.
+
+Keep in mind that Kubernetes is a complex system with many additional features and components, but this analogy should give you a good starting point for understanding its architecture at a high level.
