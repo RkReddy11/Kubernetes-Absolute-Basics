@@ -7,6 +7,10 @@ Master Node (Mayor's Office): The master node is like the mayor's office, where 
 
 API Server (Mayor): The API server is like the mayor, receiving requests and instructions from users and other components. It acts as the central communication hub for Kubernetes.
 
+etcd (Magical Notebook): etcd is like a magical notebook in which the kid writes down important information and rules for the city. It acts as a central storage for all the necessary details that the kid needs to manage the city effectively. It keeps track of things like which toys are assigned to which play areas, what tasks need to be done, and any changes or updates in the city's rules.
+
+Whenever the kid needs to make decisions or coordinate activities in the city, they consult the magical notebook (etcd) to ensure everything is organized and running smoothly.
+
 Scheduler (Task Manager): The scheduler is like a task manager. It assigns work to different worker nodes based on their availability and resources. It decides where each container should run to achieve balance and efficiency.
 
 Controller Manager (City Administrator): The controller manager is like a city administrator. It monitors the overall health and state of the city. It makes sure the desired state (as defined in the configurations) matches the current state of the containers. If anything goes wrong, it takes appropriate actions to correct it.
