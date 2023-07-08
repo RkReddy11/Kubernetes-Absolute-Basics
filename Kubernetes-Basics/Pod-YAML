@@ -1,0 +1,28 @@
+In a Kubernetes YAML file, there are four main top-level properties, each serving a specific purpose:
+
+apiVersion: The apiVersion property specifies the version of the Kubernetes API that the YAML file adheres to. It defines the set of supported resource types, fields, and behaviors available for the specific Kubernetes version. The value of apiVersion is typically in the format group/version, where group represents the resource group and version indicates the API version.
+
+kind: The kind property specifies the type of Kubernetes resource being defined in the YAML file. It identifies the kind of object the YAML represents. For example, common values for kind include "Pod", "Deployment", "Service", "ConfigMap", etc. The value of kind determines how Kubernetes interprets the rest of the YAML file and what actions it should take based on the resource type.
+
+metadata: The metadata property contains metadata information about the Kubernetes resource being defined. It includes fields like name, labels, and annotations. The name field assigns a unique name to the resource, while labels and annotations provide additional metadata for organizing, categorizing, and describing the resource. Metadata allows Kubernetes to identify and manage resources effectively.
+
+spec: The spec property specifies the desired state or configuration of the Kubernetes resource. It defines the characteristics, behaviors, and properties of the resource. The structure and content of the spec section depend on the resource type being defined. For example, a Pod spec would include details about containers, volumes, and networking, while a Deployment spec would include information about replicas, image, and deployment strategy.
+
+These four top-level properties work together to define a Kubernetes resource and its desired state. They provide essential information to the Kubernetes API server, which uses this information to create, update, or manage the corresponding resource in the cluster.
+
+Here's a sample YAML file showing the four top-level properties in action:
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: MyApp
+spec:
+  containers:
+  - name: my-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+In this example, the apiVersion specifies the Kubernetes API version, kind identifies the resource type as a Pod, metadata provides metadata like the name and labels, and spec describes the desired state of the Pod, including the container definition, image, and ports.
