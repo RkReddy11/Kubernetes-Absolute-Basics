@@ -1,0 +1,19 @@
+YAML (short for "YAML Ain't Markup Language") is a human-readable data serialization format. It's commonly used for configuration files, data exchange, and defining structured data. In the context of Kubernetes, YAML is used to write manifests that describe the desired state of Kubernetes resources.
+
+Here's why Kubernetes manifests are often written in YAML:
+
+Readability: YAML is designed to be easy to read and write by humans. It uses indentation and a simple syntax that resembles natural language, making it more approachable and understandable compared to other markup languages like XML or JSON.
+
+Expressiveness: YAML allows expressing complex structures and hierarchies using a minimal amount of syntax. This makes it suitable for representing the various Kubernetes resource specifications, such as pods, deployments, services, and more, in a concise and readable format.
+
+Hierarchical Structure: Kubernetes manifests have a hierarchical structure with multiple levels of nested fields. YAML's indentation-based structure aligns well with this hierarchy, providing a clear and intuitive representation of resource relationships and configurations.
+
+Ease of Editing: YAML files can be easily edited using basic text editors. The human-readable format and minimal syntax make it straightforward to modify and update Kubernetes manifests without relying on complex tools or specialized editors.
+
+Version Control-Friendly: YAML files work well with version control systems like Git. They can be easily tracked, compared, and merged, enabling smooth collaboration among multiple team members when working on Kubernetes configurations.
+
+Interoperability: YAML is a widely supported format across different programming languages and tools. It can be parsed and processed by various programming languages, making it highly interoperable and flexible for integration with different systems and workflows.
+
+Kubernetes Conventions: Kubernetes has adopted YAML as the preferred format for defining resources. The Kubernetes API server expects resource manifests in YAML format when creating or updating resources. By adhering to this convention, it ensures consistency and compatibility within the Kubernetes ecosystem.
+
+In summary, YAML is a human-readable data serialization format that offers readability, expressiveness, hierarchical structure, ease of editing, version control compatibility, and interoperability. Kubernetes manifests are written in YAML because it provides an intuitive and concise way to define the desired state of Kubernetes resources, making it easier for developers and operators to manage and configure Kubernetes deployments.
