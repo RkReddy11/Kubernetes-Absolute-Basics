@@ -1,0 +1,276 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deploy
+  labels:
+    name: voting-app-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: voting-app-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: voting-app-pod
+      labels:
+        name: voting-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: voting-app
+          image: kodekloud/examplevotingapp_vote:v1
+          ports:
+            - containerPort: 80
+    ---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-service
+  labels:
+    name: voting-service
+    app: demo-voting-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: voting-app-pod
+    app: demo-voting-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app-deploy
+  labels:
+    name: result-app-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: result-app-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: result-app-pod
+      labels:
+        name: result-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: result-app
+          image: kodekloud/examplevotingapp_result:v1
+          ports:
+            - containerPort: 80
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: result-service
+  labels:
+    name: result-service
+    app: demo-voting-app
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    name: result-app-pod
+    app: demo-voting-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deploy
+  labels:
+    name: redis-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: redis-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: redis-pod
+      labels:
+        name: redis-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+    ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+  labels:
+    name: redis-service
+    app: demo-voting-app
+spec:
+  ports:
+    - port: 6379
+      targetPort: 6379
+  selector:
+    name: redis-pod
+    app: demo-voting-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deploy
+  labels:
+    name: postgres-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        name: postgres-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+     ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deploy
+  labels:
+    name: postgres-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: postgres-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: postgres-pod
+      labels:
+        name: postgres-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: postgres
+          image: postgres
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: trust
+     ---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deploy
+  labels:
+    name: worker-app-deploy
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: worker-app-pod
+      app: demo-voting-app
+    
+  template:
+    metadata:
+      name: worker-app-pod
+      labels:
+        name: worker-app-pod
+        app: demo-voting-app
+    spec:
+      containers:
+        - name: worker-app
+          image: kodekloud/examplevotingapp_worker:v1
+    
+
+
+
+The provided YAML manifests describe multiple Kubernetes resources that collectively create a demo-voting-app application. Let's break down the components and their connections:
+
+Deployment: voting-app-deploy
+
+This Deployment manages replicas of the kodekloud/examplevotingapp_vote:v1 container image.
+It specifies the desired number of replicas as 1 and selects pods based on the labels name: voting-app-pod and app: demo-voting-app.
+Each pod is created from the template defined within the Deployment's spec.template section.
+Service: voting-service
+
+This Service exposes the voting application to external traffic using a LoadBalancer type.
+The Service is labeled with name: voting-service and app: demo-voting-app.
+It selects pods with labels name: voting-app-pod and app: demo-voting-app.
+Incoming traffic on port 80 is directed to the targetPort 80 of the selected pods.
+Deployment: result-app-deploy
+
+This Deployment manages replicas of the kodekloud/examplevotingapp_result:v1 container image.
+It selects pods based on the labels name: result-app-pod and app: demo-voting-app.
+The desired number of replicas is set to 1.
+Each pod is created from the template defined within the Deployment's spec.template section.
+Service: result-service
+
+This Service exposes the result application to external traffic using a LoadBalancer type.
+The Service is labeled with name: result-service and app: demo-voting-app.
+It selects pods with labels name: result-app-pod and app: demo-voting-app.
+Incoming traffic on port 80 is directed to the targetPort 80 of the selected pods.
+Deployment: redis-deploy
+
+This Deployment manages replicas of the redis container image.
+It selects pods based on the labels name: redis-pod and app: demo-voting-app.
+The desired number of replicas is set to 1.
+Each pod is created from the template defined within the Deployment's spec.template section.
+Service: redis
+
+This Service provides a connection to the Redis database.
+It is labeled with name: redis-service and app: demo-voting-app.
+The Service selects pods with labels name: redis-pod and app: demo-voting-app.
+Incoming traffic on port 6379 is directed to the targetPort 6379 of the selected pods.
+Deployment: postgres-deploy
+
+This Deployment manages replicas of the postgres container image.
+It selects pods based on the labels name: postgres-pod and app: demo-voting-app.
+The desired number of replicas is set to 1.
+Each pod is created from the template defined within the Deployment's spec.template section.
+Environment variables are set for the PostgreSQL container, including the username, password, and host authentication method.
+Deployment: worker-app-deploy
+
+This Deployment manages replicas of the kodekloud/examplevotingapp_worker:v1 container image.
+It selects pods based on the labels name: worker-app-pod and app: demo-voting-app.
+The desired number of replicas is set to 1.
+Each pod is created from the template defined within the Deployment's spec.template section.
+These YAML manifests create a complete application stack for the demo-voting-app. The voting application and result application are deployed as separate Deployments, with corresponding Services to expose them externally. The Redis and PostgreSQL components are also deployed with their respective Services. The Deployments manage the desired number of replicas, ensuring availability and scalability. Overall, the manifests define the necessary resources and connections to run the demo-voting-app in a Kubernetes cluster.
